@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:if_noticies/screens/notices_list_screen.dart';
 
 void main() {
@@ -16,6 +17,16 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
+        appBarTheme: AppBarTheme(
+          centerTitle: true,
+          titleTextStyle: GoogleFonts.hankenGrotesk(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+          color: const Color(0xFF1C1E1F),
+        ),
+        scaffoldBackgroundColor: const Color(0xFF080A0B),
       ),
       home: const NoticesListScreen(),
     );

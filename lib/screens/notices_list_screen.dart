@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:if_noticies/components/notice_card/notice_card.dart';
 import 'package:if_noticies/components/padding_loading_indicator.dart';
 import 'package:if_noticies/entities/notice.dart';
 import 'package:if_noticies/services/if_notice_api_service/service.dart';
@@ -67,26 +68,24 @@ class _NoticesListScreenState extends State<NoticesListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Notices'),
-          centerTitle: true,
-        ),
-        body: Column(
-          children: [
-            Expanded(
-              child: ListView.builder(
-                controller: _scrollController,
-                itemBuilder: (context, position) {
-                  Notice notice = noticies[position];
-                  return ListTile(
-                    title: Text(notice.title),
-                  );
-                },
-                itemCount: noticies.length,
-              ),
+      appBar: AppBar(
+        title: const Text('IF Noticias'),
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              controller: _scrollController,
+              itemBuilder: (context, position) {
+                Notice notice = noticies[position];
+                return NoticeCard(notice: notice);
+              },
+              itemCount: noticies.length,
             ),
-            if (isLoading) const PaddingLoadingIndicator(),
-          ],
-        ));
+          ),
+          if (isLoading) const PaddingLoadingIndicator(),
+        ],
+      ),
+    );
   }
 }
