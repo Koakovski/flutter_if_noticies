@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:if_noticies/components/padding_loading_indicator.dart';
 import 'package:if_noticies/entities/notice.dart';
 import 'package:if_noticies/services/if_notice_api_service/service.dart';
 
@@ -68,6 +69,7 @@ class _NoticesListScreenState extends State<NoticesListScreen> {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Notices'),
+          centerTitle: true,
         ),
         body: Column(
           children: [
@@ -83,11 +85,7 @@ class _NoticesListScreenState extends State<NoticesListScreen> {
                 itemCount: noticies.length,
               ),
             ),
-            if (isLoading)
-              const Padding(
-                padding: EdgeInsets.all(16.0),
-                child: CircularProgressIndicator(),
-              ),
+            if (isLoading) const PaddingLoadingIndicator(),
           ],
         ));
   }
