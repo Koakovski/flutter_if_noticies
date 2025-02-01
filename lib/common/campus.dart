@@ -1,0 +1,17 @@
+List<String> campus = [
+  'Morrinhos',
+  'Reitoria',
+  'Urutaí',
+  'Campos Belos',
+  'Catalão',
+  'Ceres',
+  'Cristalina',
+  'Hidrolândia',
+  'Ipameri',
+  'Iporá',
+  'Posse',
+  'Rio Verde',
+  'Trindade',
+  'Polo de Inovação',
+  'Centro de Referência',
+];

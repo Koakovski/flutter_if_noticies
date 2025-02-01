@@ -17,4 +17,8 @@ class CampusFilterItem {
   void invertSelection() {
     _selected = !_selected;
   }
+
+  static List<CampusFilterItem> buildList(List<String> names) {
+    return names.map((name) => CampusFilterItem(name: name)).toList();
+  }
 }

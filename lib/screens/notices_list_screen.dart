@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:if_noticies/common/campus.dart';
 import 'package:if_noticies/components/campus_filter/campust_filter.dart';
 import 'package:if_noticies/components/campus_filter/campust_filter_item.dart';
 import 'package:if_noticies/components/notice_card/notice_card.dart';
@@ -16,23 +17,7 @@ class NoticesListScreen extends StatefulWidget {
 class _NoticesListScreenState extends State<NoticesListScreen> {
   final IFNoticeApiService iFNoticeApiService = IFNoticeApiService();
   final ScrollController _scrollController = ScrollController();
-  final List<CampusFilterItem> campusList = [
-    CampusFilterItem(name: 'Morrinhos'),
-    CampusFilterItem(name: 'Reitoria'),
-    CampusFilterItem(name: 'Urutaí'),
-    CampusFilterItem(name: 'Campos Belos'),
-    CampusFilterItem(name: 'Catalão'),
-    CampusFilterItem(name: 'Ceres'),
-    CampusFilterItem(name: 'Cristalina'),
-    CampusFilterItem(name: 'Hidrolândia'),
-    CampusFilterItem(name: 'Ipameri'),
-    CampusFilterItem(name: 'Iporá'),
-    CampusFilterItem(name: 'Posse'),
-    CampusFilterItem(name: 'Rio Verde'),
-    CampusFilterItem(name: 'Trindade'),
-    CampusFilterItem(name: 'Polo de Inovação'),
-    CampusFilterItem(name: 'Centro de Referência'),
-  ];
+  final List<CampusFilterItem> campusList = CampusFilterItem.buildList(campus);
   List<Notice> noticies = [];
   bool isLoading = false;
   bool hasMore = true;
@@ -90,6 +75,7 @@ class _NoticesListScreenState extends State<NoticesListScreen> {
     setState(() {
       noticies = [];
     });
+    hasMore = true;
     fetchNoticies(
       lastId: lastNoticeId(),
       campusSelected: campustSelectedNames(),
