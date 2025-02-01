@@ -32,7 +32,8 @@ class Notice {
         title: db["title"],
         subtitle: db["subtitle"],
         url: db["url"],
-        publicationDate: DateTime.parse(db["publication_date"]),
+        publicationDate:
+            DateTime.fromMillisecondsSinceEpoch(db["publication_date"]),
         publicationDateString: db["publication_date_string"],
         campus: db["campus"],
       );

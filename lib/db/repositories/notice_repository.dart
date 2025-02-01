@@ -11,16 +11,41 @@ class NoticeRepository {
     await client.rawQuery('DELETE FROM notices');
   }
 
-  Future<List<Notice>> findAll({List<String>? campus, Transaction? tx}) async {
+  Future<void> createMany(
+    List<Notice> notices, {
+    Transaction? tx,
+  }) async {
     DatabaseExecutor client = tx ?? _dbService;
 
+    Batch batch = client.batch();
+
+    for (var notice in notices) {
+      batch.insert(
+        'notices',
+        {
+          'id_site': notice.idSite,
+          'title': notice.title,
+          'subtitle': notice.subtitle,
+          'url': notice.url,
+          'publication_date': notice.publicationDate.millisecondsSinceEpoch,
+          'publication_date_string': notice.publicationDateString,
+          'campus': notice.campus,
+        },
+        conflictAlgorithm: ConflictAlgorithm.replace,
+      );
+    }
+
+    await batch.commit(noResult: true);
+  }
+
+  Future<List<Notice>> findAll({List<String>? campus}) async {
     String whereClause = '';
     if (campus != null && campus.isNotEmpty) {
       String campusString = campus.map((_) => '?').join(', ');
       whereClause = 'WHERE campus IN ($campusString)';
     }
 
-    final List<Map> persistenceAdvertisements = await client.rawQuery('''
+    final List<Map> persistenceAdvertisements = await _dbService.rawQuery('''
       SELECT 
         *
       FROM 
