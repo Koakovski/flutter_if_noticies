@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:if_noticies/components/campus_filter/campust_filter.dart';
 import 'package:if_noticies/components/notice_card/notice_card.dart';
 import 'package:if_noticies/components/padding_loading_indicator.dart';
 import 'package:if_noticies/entities/notice.dart';
@@ -25,7 +26,10 @@ class _NoticesListScreenState extends State<NoticesListScreen> {
     _scrollController.addListener(_onScroll);
   }
 
-  Future<void> fetchNoticies({int? lastId}) async {
+  Future<void> fetchNoticies({
+    int? lastId,
+    List<String> campusSelected = const [],
+  }) async {
     if (isLoading || !hasMore) return;
 
     setState(() {
@@ -33,8 +37,10 @@ class _NoticesListScreenState extends State<NoticesListScreen> {
     });
 
     try {
-      List<Notice> fetchedNoticies =
-          await iFNoticeApiService.findAll(lastId: lastId);
+      List<Notice> fetchedNoticies = await iFNoticeApiService.findAll(
+        lastId: lastId,
+        campus: campusSelected,
+      );
 
       setState(() {
         if (fetchedNoticies.isEmpty) {
@@ -48,6 +54,13 @@ class _NoticesListScreenState extends State<NoticesListScreen> {
         isLoading = false;
       });
     }
+  }
+
+  Future<void> onCampustFilterChange(List<String> campusSelected) async {
+    setState(() {
+      noticies = [];
+    });
+    fetchNoticies(campusSelected: campusSelected);
   }
 
   void _onScroll() {
@@ -73,6 +86,9 @@ class _NoticesListScreenState extends State<NoticesListScreen> {
       ),
       body: Column(
         children: [
+          CampusFilter(
+            onCampustFilterChange: onCampustFilterChange,
+          ),
           Expanded(
             child: ListView.builder(
               controller: _scrollController,
