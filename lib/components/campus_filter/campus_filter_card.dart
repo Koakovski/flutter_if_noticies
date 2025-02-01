@@ -52,7 +52,7 @@ class _CampusFilterCardState extends State<CampusFilterCard> {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: _handleOnTap,
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 5),
