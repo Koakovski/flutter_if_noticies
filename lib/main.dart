@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:if_noticies/db/database_service.dart';
 import 'package:if_noticies/screens/notices_list_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await DatabaseService().initDb();
+
   runApp(const MyApp());
 }
 
