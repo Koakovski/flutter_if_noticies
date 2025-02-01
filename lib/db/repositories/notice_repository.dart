@@ -38,21 +38,39 @@ class NoticeRepository {
     await batch.commit(noResult: true);
   }
 
-  Future<List<Notice>> findAll({List<String>? campus}) async {
-    String whereClause = '';
+  Future<List<Notice>> findAll({
+    List<String>? campus,
+    int? lastId,
+    int? limit,
+  }) async {
+    List<dynamic> queryParams = [];
+    List<String> conditions = [];
+
     if (campus != null && campus.isNotEmpty) {
-      String campusString = campus.map((_) => '?').join(', ');
-      whereClause = 'WHERE campus IN ($campusString)';
+      String placeholders = List.filled(campus.length, '?').join(', ');
+      conditions.add('campus IN ($placeholders)');
+      queryParams.addAll(campus);
     }
 
-    final List<Map> persistenceAdvertisements = await _dbService.rawQuery('''
-      SELECT 
-        *
-      FROM 
-        notices
-      $whereClause
-    ''', campus);
+    if (lastId != null) {
+      conditions.add('id_site > ?');
+      queryParams.add(lastId);
+    }
 
-    return persistenceAdvertisements.map((map) => Notice.fromDb(map)).toList();
+    String whereClause =
+        conditions.isNotEmpty ? 'WHERE ${conditions.join(' AND ')}' : '';
+
+    String limitClause = limit != null ? 'LIMIT ?' : '';
+    if (limit != null) queryParams.add(limit);
+
+    final List<Map<String, dynamic>> persistenceNotices =
+        await _dbService.rawQuery('''
+    SELECT * FROM notices
+    $whereClause
+    ORDER BY publication_date ASC
+    $limitClause
+  ''', queryParams);
+
+    return persistenceNotices.map((map) => Notice.fromDb(map)).toList();
   }
 }

@@ -14,12 +14,12 @@ class IFNoticeApiService {
   }
 
   Future<List<Notice>> findAll({
-    List<String> campus = const [],
+    List<String>? campus,
     int? lastId,
-    int? limit = 20,
+    int? limit,
   }) async {
     try {
-      Map<String, dynamic> queryParameters = {'campus': campus};
+      Map<String, dynamic> queryParameters = {'campus': campus ?? []};
       if (lastId != null) {
         queryParameters['lastId'] = lastId.toString();
       }

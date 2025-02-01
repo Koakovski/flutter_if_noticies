@@ -5,7 +5,7 @@ import 'package:if_noticies/components/campus_filter/campust_filter_item.dart';
 import 'package:if_noticies/components/notice_card/notice_card.dart';
 import 'package:if_noticies/components/padding_loading_indicator.dart';
 import 'package:if_noticies/entities/notice.dart';
-import 'package:if_noticies/services/if_notice_api_service/service.dart';
+import 'package:if_noticies/services/notice_fetcher_service/notice_fetcher_service.dart';
 
 class NoticesListScreen extends StatefulWidget {
   const NoticesListScreen({super.key});
@@ -15,7 +15,7 @@ class NoticesListScreen extends StatefulWidget {
 }
 
 class _NoticesListScreenState extends State<NoticesListScreen> {
-  final IFNoticeApiService iFNoticeApiService = IFNoticeApiService();
+  final NoticeFetcherService noticeFetcherService = NoticeFetcherService();
   final ScrollController _scrollController = ScrollController();
   final List<CampusFilterItem> campusList = CampusFilterItem.buildList(campus);
   List<Notice> noticies = [];
@@ -40,7 +40,7 @@ class _NoticesListScreenState extends State<NoticesListScreen> {
     });
 
     try {
-      List<Notice> fetchedNoticies = await iFNoticeApiService.findAll(
+      List<Notice> fetchedNoticies = await noticeFetcherService.findAll(
         lastId: lastId,
         campus: campusSelected,
       );
