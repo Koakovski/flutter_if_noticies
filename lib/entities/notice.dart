@@ -17,7 +17,7 @@ class Notice {
     required this.campus,
   });
 
-  factory Notice.fromJson(Map<String, dynamic> json) => Notice(
+  factory Notice.fromJson(Map json) => Notice(
         idSite: json["idSite"],
         title: json["title"],
         subtitle: json["subtitle"],
@@ -27,7 +27,7 @@ class Notice {
         campus: json["campus"],
       );
 
-  factory Notice.fromDb(Map<String, dynamic> db) => Notice(
+  factory Notice.fromDb(Map db) => Notice(
         idSite: db["id_site"],
         title: db["title"],
         subtitle: db["subtitle"],
