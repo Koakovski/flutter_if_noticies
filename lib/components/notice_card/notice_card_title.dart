@@ -13,12 +13,12 @@ class NoticeCardTitle extends StatelessWidget {
       children: [
         Text(_title,
             textAlign: TextAlign.left,
-            style: GoogleFonts.hankenGrotesk(
-              color: Colors.white,
+            style: GoogleFonts.openSansCondensed(
+              color: const Color(0xFF333333),
               fontSize: 15,
               fontWeight: FontWeight.bold,
             )),
-        const Divider(color: Colors.white),
+        const Divider(color: Color(0xFF333333)),
       ],
     );
   }

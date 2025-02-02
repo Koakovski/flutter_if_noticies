@@ -24,14 +24,14 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         appBarTheme: AppBarTheme(
           centerTitle: true,
-          titleTextStyle: GoogleFonts.hankenGrotesk(
+          titleTextStyle: GoogleFonts.openSansCondensed(
             color: Colors.white,
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
-          color: const Color(0xFF1C1E1F),
+          color: const Color(0xFF2F9E41),
         ),
-        scaffoldBackgroundColor: const Color(0xFF080A0B),
+        scaffoldBackgroundColor: const Color(0xFFFFFFFF),
       ),
       home: const NoticesListScreen(),
     );

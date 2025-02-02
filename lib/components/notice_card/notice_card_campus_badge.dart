@@ -10,7 +10,7 @@ class NoticeCardCampusBadge extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       _campus,
-      style: GoogleFonts.hankenGrotesk(
+      style: GoogleFonts.openSansCondensed(
         fontSize: 10,
         fontWeight: FontWeight.bold,
         color: getColorByCampus(_campus),

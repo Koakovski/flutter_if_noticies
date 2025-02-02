@@ -20,8 +20,8 @@ class CampusFilterCard extends StatefulWidget {
 }
 
 class _CampusFilterCardState extends State<CampusFilterCard> {
-  late Color _primaryColor;
-  late Color _secondaryColor;
+  late Color _backGroundColor;
+  late Color _textColor;
 
   @override
   void initState() {
@@ -38,15 +38,14 @@ class _CampusFilterCardState extends State<CampusFilterCard> {
   }
 
   void _changeColors() {
-    Color black = Colors.black;
-    Color mainColor = getColorByCampus(widget._campus.name);
+    Color colorByCampus = getColorByCampus(widget._campus.name);
 
     if (widget._campus.selected) {
-      _primaryColor = mainColor;
-      _secondaryColor = black;
+      _backGroundColor = colorByCampus;
+      _textColor = Colors.white;
     } else {
-      _primaryColor = black;
-      _secondaryColor = mainColor;
+      _backGroundColor = Colors.transparent;
+      _textColor = colorByCampus;
     }
   }
 
@@ -58,16 +57,16 @@ class _CampusFilterCardState extends State<CampusFilterCard> {
         padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 5),
         margin: const EdgeInsets.all(2),
         decoration: BoxDecoration(
-          color: _primaryColor,
+          color: _backGroundColor,
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
-            color: _secondaryColor,
+            color: getColorByCampus(widget._campus.name),
             width: 1,
           ),
         ),
         child: Text(
           widget._campus.name,
-          style: TextStyle(color: _secondaryColor),
+          style: TextStyle(color: _textColor),
         ),
       ),
     );

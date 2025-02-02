@@ -2,22 +2,22 @@ import 'dart:ui';
 
 Color getColorByCampus(String campus) {
   final Map<String, Color> campusColors = {
-    'Morrinhos': const Color(0xFFAEDFF7),
-    'Reitoria': const Color(0xFFC8E6C9),
-    'Urutaí': const Color(0xFFF4CCCC),
-    'Campos Belos': const Color(0xFFFFE0B2),
-    'Catalão': const Color(0xFFE1BEE7),
-    'Ceres': const Color(0xFFB2EBF2),
-    'Cristalina': const Color(0xFFB2DFDB),
-    'Hidrolândia': const Color(0xFFF8BBD0),
-    'Ipameri': const Color(0xFFFFF9C4),
-    'Iporá': const Color(0xFFD7CCC8),
-    'Posse': const Color(0xFFC5CAE9),
-    'Rio Verde': const Color(0xFFF0F4C3),
-    'Trindade': const Color(0xFFFFFF8D),
-    'Polo de Inovação': const Color(0xFFFFCCBC),
-    'Centro de Referência': const Color(0xFFD1C4E9),
+    'Morrinhos': const Color(0xFFC90D0F),
+    'Reitoria': const Color(0xFF2F9E41),
+    'Urutaí': const Color(0xFF1E3A8A),
+    'Campos Belos': const Color(0xFFD97706),
+    'Catalão': const Color(0xFF9333EA),
+    'Ceres': const Color(0xFF047857),
+    'Cristalina': const Color(0xFFB91C1C),
+    'Hidrolândia': const Color(0xFFF59E0B),
+    'Ipameri': const Color(0xFF3B82F6),
+    'Iporá': const Color(0xFF6366F1),
+    'Posse': const Color(0xFFBE185D),
+    'Rio Verde': const Color(0xFF059669),
+    'Trindade': const Color(0xFFDC2626),
+    'Polo de Inovação': const Color(0xFF7C3AED),
+    'Centro de Referência': const Color(0xFFEA580C),
   };
 
-  return campusColors[campus] ?? const Color(0xFFF5F5F5);
+  return campusColors[campus] ?? const Color(0xFF333333);
 }

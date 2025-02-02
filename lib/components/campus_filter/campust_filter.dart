@@ -22,8 +22,9 @@ class CampusFilter extends StatefulWidget {
 class _CampusFilterState extends State<CampusFilter> {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
         height: 40,
+        color: const Color(0xFFF2F4FB),
         child: Container(
           margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
           child: ListView.builder(

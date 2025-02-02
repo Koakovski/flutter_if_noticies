@@ -31,7 +31,7 @@ class NoticeCard extends StatelessWidget {
         margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
         decoration: BoxDecoration(
-          color: const Color(0xFF1C1E1F),
+          color: const Color(0xFFF2F4FB),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Column(
@@ -43,9 +43,10 @@ class NoticeCard extends StatelessWidget {
               children: [
                 Text(
                   _notice.publicationDateString,
-                  style: GoogleFonts.hankenGrotesk(
-                    color: Colors.white,
+                  style: GoogleFonts.openSansCondensed(
+                    color: const Color(0xFF333333),
                     fontSize: 10,
+                    fontStyle: FontStyle.italic,
                   ),
                 ),
                 NoticeCardCampusBadge(_notice.campus),

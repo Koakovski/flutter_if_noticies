@@ -14,8 +14,8 @@ class NoticeCardSubtitle extends StatelessWidget {
               Text(
                 _subtitle,
                 textAlign: TextAlign.justify,
-                style: GoogleFonts.hankenGrotesk(
-                  color: Colors.white,
+                style: GoogleFonts.openSansCondensed(
+                  color: const Color(0xFF333333),
                   fontSize: 12,
                 ),
               ),
