@@ -8,6 +8,7 @@ import 'package:if_noticies/components/connectivity_icon.dart';
 import 'package:if_noticies/components/notice_card/notice_card.dart';
 import 'package:if_noticies/components/padding_loading_indicator.dart';
 import 'package:if_noticies/entities/notice.dart';
+import 'package:if_noticies/helpers.ts/has_internet_access.dart';
 import 'package:if_noticies/services/notice_fetcher_service/notice_fetcher_service.dart';
 
 class NoticesListScreen extends StatefulWidget {
@@ -19,17 +20,38 @@ class NoticesListScreen extends StatefulWidget {
 
 class _NoticesListScreenState extends State<NoticesListScreen> {
   final NoticeFetcherService noticeFetcherService = NoticeFetcherService();
-  final ScrollController _scrollController = ScrollController();
+  final ScrollController scrollController = ScrollController();
   final List<CampusFilterItem> campusList = CampusFilterItem.buildList(campus);
   List<Notice> noticies = [];
   bool isLoading = false;
   bool hasMore = true;
 
+  bool hasConnection = true;
+  late Timer connectionTimer;
+
   @override
   void initState() {
     super.initState();
     fetchNoticies();
-    _scrollController.addListener(_onScroll);
+    scrollController.addListener(_onScroll);
+    _startMonitoringConnection();
+  }
+
+  void _startMonitoringConnection() {
+    connectionTimer = Timer.periodic(const Duration(seconds: 5), (_) {
+      _updateConnectionStatus();
+    });
+  }
+
+  Future<void> _updateConnectionStatus() async {
+    bool hasConnectionNow = await hasInternetAccess();
+    if (hasConnectionNow == true && hasConnection == false) {
+      hasMore = true;
+    }
+
+    setState(() {
+      hasConnection = hasConnectionNow;
+    });
   }
 
   Future<void> fetchNoticies({
@@ -86,8 +108,8 @@ class _NoticesListScreenState extends State<NoticesListScreen> {
   }
 
   void _onScroll() {
-    bool isNextToBottom = _scrollController.position.pixels >=
-        _scrollController.position.maxScrollExtent - 100;
+    bool isNextToBottom = scrollController.position.pixels >=
+        scrollController.position.maxScrollExtent - 100;
 
     if (isNextToBottom && hasMore) {
       fetchNoticies(
@@ -99,7 +121,8 @@ class _NoticesListScreenState extends State<NoticesListScreen> {
 
   @override
   void dispose() {
-    _scrollController.dispose();
+    scrollController.dispose();
+    connectionTimer.cancel();
     super.dispose();
   }
 
@@ -108,7 +131,7 @@ class _NoticesListScreenState extends State<NoticesListScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('IF Noticias'),
-        actions: const [ConnectivityIcon()],
+        actions: [ConnectivityIcon(hasConnection: hasConnection)],
       ),
       body: Column(
         children: [
@@ -118,7 +141,7 @@ class _NoticesListScreenState extends State<NoticesListScreen> {
           ),
           Expanded(
             child: ListView.builder(
-              controller: _scrollController,
+              controller: scrollController,
               itemBuilder: (context, position) {
                 Notice notice = noticies[position];
                 return NoticeCard(notice: notice);
