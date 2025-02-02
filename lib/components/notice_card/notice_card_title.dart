@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:if_noticies/common/app_colors.dart';
 
 class NoticeCardTitle extends StatelessWidget {
   final String _title;
@@ -14,11 +15,11 @@ class NoticeCardTitle extends StatelessWidget {
         Text(_title,
             textAlign: TextAlign.left,
             style: GoogleFonts.openSansCondensed(
-              color: const Color(0xFF333333),
+              color: AppColors.textPrimary,
               fontSize: 15,
               fontWeight: FontWeight.bold,
             )),
-        const Divider(color: Color(0xFF333333)),
+        const Divider(color: AppColors.textPrimary),
       ],
     );
   }

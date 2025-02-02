@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:if_noticies/common/app_colors.dart';
 
 class NoticeCardSubtitle extends StatelessWidget {
   final String _subtitle;
@@ -15,7 +16,7 @@ class NoticeCardSubtitle extends StatelessWidget {
                 _subtitle,
                 textAlign: TextAlign.justify,
                 style: GoogleFonts.openSansCondensed(
-                  color: const Color(0xFF333333),
+                  color: AppColors.textPrimary,
                   fontSize: 12,
                 ),
               ),

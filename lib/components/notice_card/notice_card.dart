@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:if_noticies/common/app_colors.dart';
 import 'package:if_noticies/components/notice_card/notice_card_campus_badge.dart';
 import 'package:if_noticies/components/notice_card/notice_card_subtitle.dart';
 import 'package:if_noticies/components/notice_card/notice_card_title.dart';
@@ -31,7 +32,7 @@ class NoticeCard extends StatelessWidget {
         margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
         decoration: BoxDecoration(
-          color: const Color(0xFFF2F4FB),
+          color: AppColors.backgroundMuted,
           borderRadius: BorderRadius.circular(8),
         ),
         child: Column(
@@ -44,7 +45,7 @@ class NoticeCard extends StatelessWidget {
                 Text(
                   _notice.publicationDateString,
                   style: GoogleFonts.openSansCondensed(
-                    color: const Color(0xFF333333),
+                    color: AppColors.textPrimary,
                     fontSize: 10,
                     fontStyle: FontStyle.italic,
                   ),
