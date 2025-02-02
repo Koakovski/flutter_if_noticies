@@ -11,7 +11,7 @@ Color getColorByCampus(String campus) {
     'Cristalina': const Color(0xFFB91C1C),
     'Hidrolândia': const Color(0xFFF59E0B),
     'Ipameri': const Color(0xFF3B82F6),
-    'Iporá': const Color(0xFF6366F1),
+    'Iporá': const Color(0xFF14B8A6),
     'Posse': const Color(0xFFBE185D),
     'Rio Verde': const Color(0xFF059669),
     'Trindade': const Color(0xFFDC2626),
