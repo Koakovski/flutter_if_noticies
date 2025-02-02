@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:if_noticies/common/app_colors.dart';
 import 'package:if_noticies/common/campus.dart';
 import 'package:if_noticies/components/campus_filter/campust_filter.dart';
 import 'package:if_noticies/components/campus_filter/campust_filter_item.dart';
@@ -140,14 +142,28 @@ class _NoticesListScreenState extends State<NoticesListScreen> {
             onCampustFilterChange: onCampustFilterChange,
           ),
           Expanded(
-            child: ListView.builder(
-              controller: scrollController,
-              itemBuilder: (context, position) {
-                Notice notice = noticies[position];
-                return NoticeCard(notice: notice);
-              },
-              itemCount: noticies.length,
-            ),
+            child: isLoading == false && noticies.isEmpty
+                ? Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Text(
+                        'Nenhuma notícia encontrada',
+                        style: GoogleFonts.openSansCondensed(
+                          color: AppColors.primary,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  )
+                : ListView.builder(
+                    controller: scrollController,
+                    itemBuilder: (context, position) {
+                      Notice notice = noticies[position];
+                      return NoticeCard(notice: notice);
+                    },
+                    itemCount: noticies.length,
+                  ),
           ),
           if (isLoading) const PaddingLoadingIndicator(),
         ],
