@@ -1,10 +1,14 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:if_noticies/common/campus.dart';
 import 'package:if_noticies/components/campus_filter/campust_filter.dart';
 import 'package:if_noticies/components/campus_filter/campust_filter_item.dart';
+import 'package:if_noticies/components/connectivity_icon.dart';
 import 'package:if_noticies/components/notice_card/notice_card.dart';
 import 'package:if_noticies/components/padding_loading_indicator.dart';
 import 'package:if_noticies/entities/notice.dart';
+import 'package:if_noticies/helpers.ts/has_internet_access.dart';
 import 'package:if_noticies/services/notice_fetcher_service/notice_fetcher_service.dart';
 
 class NoticesListScreen extends StatefulWidget {
@@ -105,6 +109,7 @@ class _NoticesListScreenState extends State<NoticesListScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('IF Noticias'),
+        actions: const [ConnectivityIcon()],
       ),
       body: Column(
         children: [
