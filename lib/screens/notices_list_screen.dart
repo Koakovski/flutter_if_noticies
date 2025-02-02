@@ -8,7 +8,6 @@ import 'package:if_noticies/components/connectivity_icon.dart';
 import 'package:if_noticies/components/notice_card/notice_card.dart';
 import 'package:if_noticies/components/padding_loading_indicator.dart';
 import 'package:if_noticies/entities/notice.dart';
-import 'package:if_noticies/helpers.ts/has_internet_access.dart';
 import 'package:if_noticies/services/notice_fetcher_service/notice_fetcher_service.dart';
 
 class NoticesListScreen extends StatefulWidget {
