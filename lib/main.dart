@@ -3,11 +3,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:if_noticies/common/app_colors.dart';
 import 'package:if_noticies/db/database_service.dart';
 import 'package:if_noticies/screens/notices_list_screen.dart';
+import 'package:if_noticies/services/notice_fetcher_service/notice_fetcher_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await DatabaseService().initDb();
+  await NoticeFetcherService().replaceNoticesOnCache();
 
   runApp(const MyApp());
 }

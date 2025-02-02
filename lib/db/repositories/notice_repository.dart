@@ -60,8 +60,8 @@ class NoticeRepository {
     String whereClause =
         conditions.isNotEmpty ? 'WHERE ${conditions.join(' AND ')}' : '';
 
-    String limitClause = limit != null ? 'LIMIT ?' : '';
-    if (limit != null) queryParams.add(limit);
+    String limitClause = 'LIMIT ?';
+    queryParams.add(limit ?? 20);
 
     final List<Map<String, dynamic>> persistenceNotices =
         await _dbService.rawQuery('''
