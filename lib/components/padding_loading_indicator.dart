@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:if_noticies/common/app_colors.dart';
 
 class PaddingLoadingIndicator extends StatelessWidget {
   const PaddingLoadingIndicator({super.key});
@@ -7,7 +8,7 @@ class PaddingLoadingIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Padding(
       padding: EdgeInsets.all(16.0),
-      child: CircularProgressIndicator(color: Colors.white),
+      child: CircularProgressIndicator(color: AppColors.primary),
     );
   }
 }
