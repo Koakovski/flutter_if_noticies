@@ -36,6 +36,7 @@ class NoticeCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             NoticeCardTitle(_notice.title),
             NoticeCardSubtitle(_notice.subtitle),
