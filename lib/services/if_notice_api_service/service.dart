@@ -8,7 +8,7 @@ class IFNoticeApiService {
   static Uri _urlBuilder([Map<String, dynamic>? queryParameters]) {
     return Uri.http(
       IFNoticeApiUrls.baseUrl,
-      '/noticias/',
+      '/ultimas-noticias/',
       queryParameters,
     );
   }

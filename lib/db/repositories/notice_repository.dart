@@ -53,7 +53,7 @@ class NoticeRepository {
     }
 
     if (lastId != null) {
-      conditions.add('id_site > ?');
+      conditions.add('id_site < ?');
       queryParams.add(lastId);
     }
 
@@ -67,7 +67,7 @@ class NoticeRepository {
         await _dbService.rawQuery('''
     SELECT * FROM notices
     $whereClause
-    ORDER BY publication_date ASC
+    ORDER BY publication_date DESC
     $limitClause
   ''', queryParams);
 
