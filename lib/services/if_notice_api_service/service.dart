@@ -24,9 +24,8 @@ class IFNoticeApiService {
         queryParameters['lastId'] = lastId.toString();
       }
 
-      if (limit != null) {
-        queryParameters['limit'] = limit.toString();
-      }
+      limit ??= 20;
+      queryParameters['limit'] = limit.toString();
 
       Uri url = IFNoticeApiService._urlBuilder(queryParameters);
 
