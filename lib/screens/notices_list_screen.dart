@@ -35,17 +35,19 @@ class _NoticesListScreenState extends State<NoticesListScreen> {
   void initState() {
     super.initState();
     fetchNoticies();
+    updateConnectionStatus();
+
     scrollController.addListener(_onScroll);
-    _startMonitoringConnection();
+    startMonitoringConnection();
   }
 
-  void _startMonitoringConnection() {
+  void startMonitoringConnection() {
     connectionTimer = Timer.periodic(const Duration(seconds: 5), (_) {
-      _updateConnectionStatus();
+      updateConnectionStatus();
     });
   }
 
-  Future<void> _updateConnectionStatus() async {
+  Future<void> updateConnectionStatus() async {
     bool hasConnectionNow = await hasInternetAccess();
     if (hasConnectionNow == true && hasConnection == false) {
       hasMore = true;
