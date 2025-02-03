@@ -19,7 +19,7 @@ class NoticeFetcherService {
       return await _iFNoticeApiService.findAll(
         campus: campus,
         lastId: lastId,
-        limit: limit ?? 20,
+        limit: limit,
       );
     }
 
