@@ -11,7 +11,7 @@ class ConnectivityIcon extends StatelessWidget {
       margin: const EdgeInsets.all(10),
       child: Icon(
         hasConnection ? Icons.wifi : Icons.wifi_off,
-        color: hasConnection ? Colors.white : Colors.red,
+        color: hasConnection ? Colors.white : const Color(0xFFFFA500),
       ),
     );
   }
