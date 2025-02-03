@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:if_noticies/common/app_colors.dart';
 import 'package:if_noticies/db/database_service.dart';
@@ -6,10 +7,13 @@ import 'package:if_noticies/screens/notices_list_screen.dart';
 import 'package:if_noticies/services/notice_fetcher_service/notice_fetcher_service.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   await DatabaseService().initDb();
   await NoticeFetcherService().replaceNoticesOnCache();
+
+  FlutterNativeSplash.remove();
 
   runApp(const MyApp());
 }
